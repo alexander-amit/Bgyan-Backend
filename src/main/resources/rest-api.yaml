@@ -1,0 +1,172 @@
+swagger: "2.0"
+info:
+  description: "One Stop Destination for B-school Students"
+  version: "3.0.0"
+  title: "B-Gyan"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "amit.prag.chanakya@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+tags:
+- name: "WeeklyNewsAnalysis"
+  description: "Analysis of all important news on weekly basis"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "BookSummary"
+  description: "Summary of Most Read Book - 5 Min read"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "MustKnowInterviewQuestion"
+  description: "Most asked interview question in B-school interview"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "CurrentAffairAnalysisGDPrepration"
+  description: "Analysis of current affair and happening"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /WeeklyNewsAnalysis:
+    post:
+      tags:
+      - "WeeklyNewsAnalysis"
+      summary: "Repository of Weekly News Analysis"
+      description: ""
+      operationId: "uploadWeeklyNewsAnalysis"
+      consumes:
+      - multipart/form-data
+      produces:
+      - "application/json"
+      parameters:
+      - in: formData
+        name: upfile
+        type: file
+        required: true
+        description: The file to upload.
+      - in: formData
+        name: author
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: date
+        type: string
+        required: true
+        description: Description of file contents.
+      responses:
+        201:
+          description: "News Uploaded"
+          schema:
+            $ref: "#/definitions/NewsResponseDto"
+        405:
+          description: "Invalid News Analysis format"
+    put:
+      tags:
+      - "WeeklyNewsAnalysis"
+      summary: "Update Existing News"
+      description: ""
+      operationId: "updateWeeklyNewsAnalysis"
+      consumes:
+      - multipart/form-data
+      produces:
+      - "application/json"
+      parameters:
+      - in: formData
+        name: upfile
+        type: file
+        required: true
+        description: The file to upload.
+      - in: formData
+        name: author
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: date
+        type: string
+        required: true
+        description: Description of file contents.
+      responses:
+        201:
+          description: "Updated"
+          schema:
+            $ref: "#/definitions/NewsResponseDto"
+        405:
+          description: "Invalid News Analysis format"
+    get:
+      tags:
+      - "WeeklyNewsAnalysis"
+      summary: "Get news analysis List"
+      description: ""
+      operationId: "getAllNewsIdList"
+      responses:
+        '200':
+          description: "Returned List of All News Id"
+          schema:
+            $ref: "#/definitions/NewsResponseDtoList"
+        '405':
+          description: "Invalid input"
+  /WeeklyNewsAnalysis/{newsId}:
+
+    delete:
+      tags:
+      - "WeeklyNewsAnalysis"
+      summary: "Delete news analysis"
+      description: ""
+      operationId: "deleteNewsAnalysis"
+      parameters:
+      - name: "newsId"
+        in: "path"
+        description: "Id of news"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Delete operation with News Id"
+          schema:
+            $ref: "#/definitions/NewsResponseDto"
+        405:
+          description: "Invalid input"
+          
+definitions:
+  NewsResponseDto:
+    type: object
+    required:
+      - id
+      - author
+    properties:
+      id:
+        type: string
+      author:
+        type: string
+  NewsResponseDtoList:
+    type: object
+    required:
+      - newsIdList
+    properties:
+      newsIdList:
+        type: array
+        items: 
+         type: string
+       
+#  ApiResponse:
+#    type: "object"
+#    properties:
+#      code:
+#        type: "integer"
+#        format: "int32"
+#      type:
+#        type: "string"
+#      message:
+#        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
