@@ -3,6 +3,11 @@ package com.nitie.bgyan.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,10 +44,15 @@ public class NewsAnalysisService {
 		return newsResponseDtoList;
 	}
 
-	public NewsAnalysis getNewsAnalysis(String newsId) {
-		return newsAnalysisRepo.findById(newsId.hashCode())
+	public ResponseEntity<Resource> getNewsAnalysis(String newsId) {
+		NewsAnalysis newsAnalysis = newsAnalysisRepo.findById(newsId.hashCode())
 				.orElseThrow(() -> new MyFileNotFoundException("File not found with id->" + newsId.hashCode()));
-	}
+		
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(newsAnalysis .getFileType()))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + newsAnalysis .getFileName() + "\"")
+				.body(new ByteArrayResource(newsAnalysis.getData()));
+
+		}
 
 	public NewsResponseDto saveAnalysis(MultipartFile upfile, String author, String date) {
 		String fileName = StringUtils.cleanPath(upfile.getOriginalFilename());

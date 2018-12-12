@@ -42,7 +42,7 @@ public class CAAnalysisService {
 
 	public Void deleteCAAnalysis(String section) {
 		switch (section) {
-		case "maketing":
+		case "marketing":
 			marketingRepo.deleteAll();
 			break;
 		case "operations":
@@ -65,7 +65,7 @@ public class CAAnalysisService {
 
 	public Void deleteCAAnalysisWithId(String section, String caId) {
 		switch (section) {
-		case "maketing":
+		case "marketing":
 			marketingRepo.deleteById(Integer.valueOf(caId));
 			break;
 		case "operations":
@@ -89,7 +89,7 @@ public class CAAnalysisService {
 	public CAResponseDtoList getAllCAIdList(String section) {
 		CAResponseDtoList list = new CAResponseDtoList();
 		switch (section) {
-		case "maketing":
+		case "marketing":
 			marketingRepo.findAll().forEach(e -> list.addCaIdListItem(e.getFileName()));
 			break;
 		case "operations":
@@ -118,7 +118,7 @@ public class CAAnalysisService {
 				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
 			}
 			switch (section) {
-			case "maketing":
+			case "marketing":
 				Marketing market = new Marketing();
 				market.setAuthor(author);
 				market.setData(upfile.getBytes());
@@ -205,7 +205,7 @@ public class CAAnalysisService {
 				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
 			}
 			switch (section) {
-			case "maketing":
+			case "marketing":
 				Marketing market = marketingRepo.findById(fileName.hashCode())
 						.orElseThrow(() -> new MyFileNotFoundException("File not found with id "
 								+ StringUtils.cleanPath(upfile.getOriginalFilename()).hashCode()));
@@ -298,8 +298,8 @@ public class CAAnalysisService {
 
 	public ResponseEntity<Resource> getCAAnalysis(String section, String caId) {
 		switch (section) {
-		case "maketing":
-			Marketing market = marketingRepo.findById(Integer.valueOf(caId))
+		case "marketing":
+			Marketing market = marketingRepo.findById(caId.hashCode())
 					.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + caId));
 			;
 			return ResponseEntity.ok().contentType(MediaType.parseMediaType(market.getFileType()))
@@ -307,28 +307,28 @@ public class CAAnalysisService {
 					.body(new ByteArrayResource(market.getData()));
 
 		case "operations":
-			Operations op = opRepo.findById(Integer.valueOf(caId))
+			Operations op = opRepo.findById(caId.hashCode())
 					.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + caId));
 			;
 			return ResponseEntity.ok().contentType(MediaType.parseMediaType(op.getFileType()))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + op.getFileName() + "\"")
 					.body(new ByteArrayResource(op.getData()));
 		case "currentaffair":
-			CurrentAffair ca = caRepo.findById(Integer.valueOf(caId))
+			CurrentAffair ca = caRepo.findById(caId.hashCode())
 					.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + caId));
 			;
 			return ResponseEntity.ok().contentType(MediaType.parseMediaType(ca.getFileType()))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + ca.getFileName() + "\"")
 					.body(new ByteArrayResource(ca.getData()));
 		case "finance":
-			Finance fin = financeRepo.findById(Integer.valueOf(caId))
+			Finance fin = financeRepo.findById(caId.hashCode())
 					.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + caId));
 			;
 			return ResponseEntity.ok().contentType(MediaType.parseMediaType(fin.getFileType()))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fin.getFileName() + "\"")
 					.body(new ByteArrayResource(fin.getData()));
 		case "abstract":
-			Abstract ab = absRepo.findById(Integer.valueOf(caId))
+			Abstract ab = absRepo.findById(caId.hashCode())
 					.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + caId));
 			;
 			return ResponseEntity.ok().contentType(MediaType.parseMediaType(ab.getFileType()))
@@ -339,5 +339,4 @@ public class CAAnalysisService {
 		}
 		return null;
 	}
-
 }

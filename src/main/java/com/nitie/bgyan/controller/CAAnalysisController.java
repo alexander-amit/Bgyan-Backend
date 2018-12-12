@@ -5,6 +5,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nitie.bgyan.generated.api.CAAnalysisApi;
@@ -12,6 +14,7 @@ import com.nitie.bgyan.generated.dto.CAResponseDto;
 import com.nitie.bgyan.generated.dto.CAResponseDtoList;
 import com.nitie.bgyan.service.CAAnalysisService;
 
+@RestController
 public class CAAnalysisController implements CAAnalysisApi {
 	
 	@Autowired
@@ -32,8 +35,8 @@ public class CAAnalysisController implements CAAnalysisApi {
 		return new ResponseEntity<CAResponseDtoList>(cAAnalysisService.getAllCAIdList(section), HttpStatus.OK);
 	}
 
-	@GetMapping("/CAAnalysis/{section}/{CAId}")
-	public ResponseEntity<Resource> getCAAnalysis(String section, String caId) {
+	@GetMapping("/CAAnalysis/{section}/{caId}")
+	public ResponseEntity<Resource> getCAAnalysis(@PathVariable String section, @PathVariable String caId) {
 		return cAAnalysisService.getCAAnalysis(section, caId);
 		
 	}
