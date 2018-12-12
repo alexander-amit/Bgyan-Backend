@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T17:20:56.882+05:30")
 
 @Api(value = "WeeklyNewsAnalysis", description = "the WeeklyNewsAnalysis API")
 public interface WeeklyNewsAnalysisApi {

@@ -1,6 +1,8 @@
 package com.nitie.bgyan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,39 +19,35 @@ public class CAAnalysisController implements CAAnalysisApi {
 	
 	@Override
 	public ResponseEntity<Void> deleteCAAnalysis(String section) {
-		// TODO Auto-generated method stub
-		return CAAnalysisApi.super.deleteCAAnalysis(section);
+		return new ResponseEntity<Void>(cAAnalysisService.deleteCAAnalysis(section), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteCAAnalysisWithId(String section, String caId) {
-		// TODO Auto-generated method stub
-		return CAAnalysisApi.super.deleteCAAnalysisWithId(section, caId);
+		return new ResponseEntity<Void>(cAAnalysisService.deleteCAAnalysisWithId(section, caId), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<CAResponseDtoList> getAllCAIdList(String section) {
-		// TODO Auto-generated method stub
-		return CAAnalysisApi.super.getAllCAIdList(section);
+		return new ResponseEntity<CAResponseDtoList>(cAAnalysisService.getAllCAIdList(section), HttpStatus.OK);
 	}
 
 	@GetMapping("/CAAnalysis/{section}/{CAId}")
-	public ResponseEntity<CAResponseDto> getCAAnalysis(String section, String caId) {
-		return null;
+	public ResponseEntity<Resource> getCAAnalysis(String section, String caId) {
+		return cAAnalysisService.getCAAnalysis(section, caId);
+		
 	}
 
 	@Override
 	public ResponseEntity<CAResponseDto> updateCAAnalysis(MultipartFile upfile, String author, String date,
 			String section) {
-		// TODO Auto-generated method stub
-		return CAAnalysisApi.super.updateCAAnalysis(upfile, author, date, section);
+		return new ResponseEntity<CAResponseDto>(cAAnalysisService.updateCAAnalysis(upfile, author, date, section), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<CAResponseDto> uploadCAAnalysis(MultipartFile upfile, String author, String date,
 			String section) {
-		// TODO Auto-generated method stub
-		return CAAnalysisApi.super.uploadCAAnalysis(upfile, author, date, section);
-	}
+		return new ResponseEntity<CAResponseDto>(cAAnalysisService.uploadCAAnalysis(upfile, author, date, section), HttpStatus.OK);
+		}
 
 }

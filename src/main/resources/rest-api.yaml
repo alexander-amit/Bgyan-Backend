@@ -263,11 +263,14 @@ definitions:
     type: object
     required:
       - id
+      - headline
       - author
     properties:
       id:
         type: string
       author:
+        type: string
+      headline:
         type: string
   NewsResponseDtoList:
     type: object
@@ -282,11 +285,14 @@ definitions:
     type: object
     required:
       - id
+      - headline
       - author
       - section
       - date
     properties:
       id:
+        type: string
+      headline:
         type: string
       author:
         type: string
@@ -302,7 +308,7 @@ definitions:
       CAIdList:
         type: array
         items: 
-          $ref: '#/definitions/CAResponseDto'  
+          type: string  
   
        
 #  ApiResponse:

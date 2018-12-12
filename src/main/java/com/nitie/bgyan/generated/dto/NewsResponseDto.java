@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * NewsResponseDto
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T17:20:56.882+05:30")
 
 public class NewsResponseDto   {
   @JsonProperty("id")
@@ -17,6 +17,9 @@ public class NewsResponseDto   {
 
   @JsonProperty("author")
   private String author = null;
+
+  @JsonProperty("headline")
+  private String headline = null;
 
   public NewsResponseDto id(String id) {
     this.id = id;
@@ -56,6 +59,25 @@ public class NewsResponseDto   {
     this.author = author;
   }
 
+  public NewsResponseDto headline(String headline) {
+    this.headline = headline;
+    return this;
+  }
+
+   /**
+   * Get headline
+   * @return headline
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getHeadline() {
+    return headline;
+  }
+
+  public void setHeadline(String headline) {
+    this.headline = headline;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -67,12 +89,13 @@ public class NewsResponseDto   {
     }
     NewsResponseDto newsResponseDto = (NewsResponseDto) o;
     return Objects.equals(this.id, newsResponseDto.id) &&
-        Objects.equals(this.author, newsResponseDto.author);
+        Objects.equals(this.author, newsResponseDto.author) &&
+        Objects.equals(this.headline, newsResponseDto.headline);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, author);
+    return Objects.hash(id, author, headline);
   }
 
   @Override
@@ -82,6 +105,7 @@ public class NewsResponseDto   {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
+    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,19 +1,23 @@
 package com.nitie.bgyan.generated.dto;
 
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
-import javax.validation.constraints.*;
 /**
  * CAResponseDto
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T17:20:56.882+05:30")
 
 public class CAResponseDto   {
   @JsonProperty("id")
   private String id = null;
+
+  @JsonProperty("headline")
+  private String headline = null;
 
   @JsonProperty("author")
   private String author = null;
@@ -41,6 +45,25 @@ public class CAResponseDto   {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public CAResponseDto headline(String headline) {
+    this.headline = headline;
+    return this;
+  }
+
+   /**
+   * Get headline
+   * @return headline
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getHeadline() {
+    return headline;
+  }
+
+  public void setHeadline(String headline) {
+    this.headline = headline;
   }
 
   public CAResponseDto author(String author) {
@@ -111,6 +134,7 @@ public class CAResponseDto   {
     }
     CAResponseDto caResponseDto = (CAResponseDto) o;
     return Objects.equals(this.id, caResponseDto.id) &&
+        Objects.equals(this.headline, caResponseDto.headline) &&
         Objects.equals(this.author, caResponseDto.author) &&
         Objects.equals(this.section, caResponseDto.section) &&
         Objects.equals(this.date, caResponseDto.date);
@@ -118,7 +142,7 @@ public class CAResponseDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, author, section, date);
+    return Objects.hash(id, headline, author, section, date);
   }
 
   @Override
@@ -127,6 +151,7 @@ public class CAResponseDto   {
     sb.append("class CAResponseDto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    section: ").append(toIndentedString(section)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");

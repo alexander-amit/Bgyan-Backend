@@ -1,29 +1,29 @@
 package com.nitie.bgyan.generated.dto;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.nitie.bgyan.generated.dto.CAResponseDto;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.constraints.*;
+import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 /**
  * CAResponseDtoList
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T17:20:56.882+05:30")
 
 public class CAResponseDtoList   {
   @JsonProperty("CAIdList")
-  private List<CAResponseDto> caIdList = new ArrayList<CAResponseDto>();
+  private List<String> caIdList = new ArrayList<String>();
 
-  public CAResponseDtoList caIdList(List<CAResponseDto> caIdList) {
+  public CAResponseDtoList caIdList(List<String> caIdList) {
     this.caIdList = caIdList;
     return this;
   }
 
-  public CAResponseDtoList addCaIdListItem(CAResponseDto caIdListItem) {
+  public CAResponseDtoList addCaIdListItem(String caIdListItem) {
     this.caIdList.add(caIdListItem);
     return this;
   }
@@ -34,11 +34,11 @@ public class CAResponseDtoList   {
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
-  public List<CAResponseDto> getCaIdList() {
+  public List<String> getCaIdList() {
     return caIdList;
   }
 
-  public void setCaIdList(List<CAResponseDto> caIdList) {
+  public void setCaIdList(List<String> caIdList) {
     this.caIdList = caIdList;
   }
 

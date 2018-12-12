@@ -33,25 +33,26 @@ public class NewsAnalysisController implements WeeklyNewsAnalysisApi {
 	public ResponseEntity<NewsResponseDtoList> getAllNewsIdList() {
 		return new ResponseEntity<NewsResponseDtoList>(newsAnalysisService.getAllNewsIdList(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/WeeklyNewsAnalysis/{newsId}")
 	public ResponseEntity<Resource> getNewsAnalysis(@PathVariable String newsId) {
 		NewsAnalysis newsAnalysis = newsAnalysisService.getNewsAnalysis(newsId);
 
-		return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(newsAnalysis.getFileType()))
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(newsAnalysis.getFileType()))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + newsAnalysis.getFileName() + "\"")
 				.body(new ByteArrayResource(newsAnalysis.getData()));
 	}
 
 	@Override
 	public ResponseEntity<NewsResponseDto> updateWeeklyNewsAnalysis(MultipartFile upfile, String author, String date) {
-		return new ResponseEntity<NewsResponseDto>(newsAnalysisService.updateNewsAnalysis(upfile,author,date), HttpStatus.OK);
+		return new ResponseEntity<NewsResponseDto>(newsAnalysisService.updateNewsAnalysis(upfile, author, date),
+				HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<NewsResponseDto> uploadWeeklyNewsAnalysis(MultipartFile upfile, String author, String date) {
-		return new ResponseEntity<NewsResponseDto>(newsAnalysisService.saveAnalysis(upfile,author,date), HttpStatus.OK);
+		return new ResponseEntity<NewsResponseDto>(newsAnalysisService.saveAnalysis(upfile, author, date),
+				HttpStatus.OK);
 	}
 
 }
