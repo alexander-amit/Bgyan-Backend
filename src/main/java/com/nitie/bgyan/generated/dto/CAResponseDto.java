@@ -7,18 +7,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 /**
- * NewsResponseDto
+ * CAResponseDto
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
 
-public class NewsResponseDto   {
+public class CAResponseDto   {
   @JsonProperty("id")
   private String id = null;
 
   @JsonProperty("author")
   private String author = null;
 
-  public NewsResponseDto id(String id) {
+  @JsonProperty("section")
+  private String section = null;
+
+  @JsonProperty("date")
+  private String date = null;
+
+  public CAResponseDto id(String id) {
     this.id = id;
     return this;
   }
@@ -37,7 +43,7 @@ public class NewsResponseDto   {
     this.id = id;
   }
 
-  public NewsResponseDto author(String author) {
+  public CAResponseDto author(String author) {
     this.author = author;
     return this;
   }
@@ -56,6 +62,44 @@ public class NewsResponseDto   {
     this.author = author;
   }
 
+  public CAResponseDto section(String section) {
+    this.section = section;
+    return this;
+  }
+
+   /**
+   * Get section
+   * @return section
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getSection() {
+    return section;
+  }
+
+  public void setSection(String section) {
+    this.section = section;
+  }
+
+  public CAResponseDto date(String date) {
+    this.date = date;
+    return this;
+  }
+
+   /**
+   * Get date
+   * @return date
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -65,23 +109,27 @@ public class NewsResponseDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewsResponseDto newsResponseDto = (NewsResponseDto) o;
-    return Objects.equals(this.id, newsResponseDto.id) &&
-        Objects.equals(this.author, newsResponseDto.author);
+    CAResponseDto caResponseDto = (CAResponseDto) o;
+    return Objects.equals(this.id, caResponseDto.id) &&
+        Objects.equals(this.author, caResponseDto.author) &&
+        Objects.equals(this.section, caResponseDto.section) &&
+        Objects.equals(this.date, caResponseDto.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, author);
+    return Objects.hash(id, author, section, date);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NewsResponseDto {\n");
+    sb.append("class CAResponseDto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
+    sb.append("    section: ").append(toIndentedString(section)).append("\n");
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -16,16 +16,6 @@ tags:
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
-- name: "BookSummary"
-  description: "Summary of Most Read Book - 5 Min read"
-  externalDocs:
-    description: "Find out more"
-    url: "http://swagger.io"
-- name: "MustKnowInterviewQuestion"
-  description: "Most asked interview question in B-school interview"
-  externalDocs:
-    description: "Find out more"
-    url: "http://swagger.io"
 - name: "CurrentAffairAnalysisGDPrepration"
   description: "Analysis of current affair and happening"
   externalDocs:
@@ -115,7 +105,6 @@ paths:
         '405':
           description: "Invalid input"
   /WeeklyNewsAnalysis/{newsId}:
-
     delete:
       tags:
       - "WeeklyNewsAnalysis"
@@ -135,7 +124,140 @@ paths:
             $ref: "#/definitions/NewsResponseDto"
         405:
           description: "Invalid input"
-          
+  /CAAnalysis:
+    post:
+      tags:
+      - "CurrentAffairAnalysisGDPrepration"
+      summary: "Repository of CA Analysis"
+      description: ""
+      operationId: "uploadCAAnalysis"
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: formData
+        name: upfile
+        type: file
+        required: true
+        description: The file to upload.
+      - in: formData
+        name: author
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: date
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: section
+        type: string
+        required: true
+        description: Description of section of contents.
+      responses:
+        201:
+          description: "News Uploaded"
+          schema:
+            $ref: "#/definitions/CAResponseDto"
+        405:
+          description: "Invalid CA upload Analysis format"
+    put:
+      tags:
+      - "CurrentAffairAnalysisGDPrepration"
+      summary: "Update Existing News"
+      description: ""
+      operationId: "updateCAAnalysis"
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: formData
+        name: upfile
+        type: file
+        required: true
+        description: The file to upload.
+      - in: formData
+        name: author
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: date
+        type: string
+        required: true
+        description: Description of file contents.
+      - in: formData
+        name: section
+        type: string
+        required: true
+        description: Description of section of contents.
+      responses:
+        201:
+          description: "Updated"
+          schema:
+            $ref: "#/definitions/CAResponseDto"
+        405:
+          description: "Invalid CA update Analysis format"
+  /CAAnalysis/{section}:
+    get:
+      tags:
+      - "CurrentAffairAnalysisGDPrepration"
+      summary: "Get CA analysis List"
+      description: ""
+      operationId: "getAllCAIdList"
+      parameters:
+      - name: "section"
+        in: "path"
+        description: "Section of CA"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: "Returned List of All CA Id"
+          schema:
+            $ref: "#/definitions/CAResponseDtoList"
+        '405':
+          description: "Invalid input for get all CA Id"
+    delete:
+      tags:
+      - "CurrentAffairAnalysisGDPrepration"
+      summary: "Delete all CA analysis of a particular section"
+      description: ""
+      operationId: "deleteCAAnalysis"
+      parameters:
+      - name: "section"
+        in: "path"
+        description: "Section of CA"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully Deleted all CA analysis with specified section"
+        405:
+          description: "Invalid input to delete CA analysis of section."
+  /CAAnalysis/{section}/{CAId}:
+    delete:
+      tags:
+      - "CurrentAffairAnalysisGDPrepration"
+      summary: "Delete CA analysis of a particular section with particular ID"
+      description: ""
+      operationId: "deleteCAAnalysisWithId"
+      parameters:
+      - name: "section"
+        in: "path"
+        description: "Section of CA"
+        required: true
+        type: "string"
+      - name: "CAId"
+        in: "path"
+        description: "Id of CA"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfully Deleted CA analysis with specified section and ID"
+        405:
+          description: "Invalid input to delete CA analysis of section."
+
 definitions:
   NewsResponseDto:
     type: object
@@ -156,6 +278,32 @@ definitions:
         type: array
         items: 
          type: string
+  CAResponseDto:
+    type: object
+    required:
+      - id
+      - author
+      - section
+      - date
+    properties:
+      id:
+        type: string
+      author:
+        type: string
+      section:
+        type: string
+      date:
+        type: string
+  CAResponseDtoList:
+    type: object
+    required:
+      - CAIdList
+    properties:
+      CAIdList:
+        type: array
+        items: 
+          $ref: '#/definitions/CAResponseDto'  
+  
        
 #  ApiResponse:
 #    type: "object"

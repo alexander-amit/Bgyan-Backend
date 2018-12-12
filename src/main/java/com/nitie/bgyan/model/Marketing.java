@@ -6,8 +6,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "newsanalysis")
-public class NewsAnalysis {
+@Table(name = "marketing")
+public class Marketing {
 	@Id
 	private int id;
 
@@ -17,6 +17,11 @@ public class NewsAnalysis {
 
 	private String Date;
 
+	private String fileType;
+	
+	@Lob
+	private byte[] data;
+
 	public String getFileType() {
 		return fileType;
 	}
@@ -25,16 +30,12 @@ public class NewsAnalysis {
 		this.fileType = fileType;
 	}
 
-	private String fileType;
 
-	@Lob
-	private byte[] data;
-
-	public NewsAnalysis() {
+	public Marketing() {
 
 	}
 
-	public NewsAnalysis(String fileName, String author, String fileType, String date, byte[] data) {
+	public Marketing(String fileName, String author, String fileType, String date, byte[] data) {
 		this.id = fileName.hashCode();
 		this.fileName = fileName;
 		this.author = author;

@@ -3,42 +3,43 @@ package com.nitie.bgyan.generated.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.nitie.bgyan.generated.dto.CAResponseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 /**
- * NewsResponseDtoList
+ * CAResponseDtoList
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-12T12:52:35.847+05:30")
 
-public class NewsResponseDtoList   {
-  @JsonProperty("newsIdList")
-  private List<String> newsIdList = new ArrayList<String>();
+public class CAResponseDtoList   {
+  @JsonProperty("CAIdList")
+  private List<CAResponseDto> caIdList = new ArrayList<CAResponseDto>();
 
-  public NewsResponseDtoList newsIdList(List<String> newsIdList) {
-    this.newsIdList = newsIdList;
+  public CAResponseDtoList caIdList(List<CAResponseDto> caIdList) {
+    this.caIdList = caIdList;
     return this;
   }
 
-  public NewsResponseDtoList addNewsIdListItem(String newsIdListItem) {
-    this.newsIdList.add(newsIdListItem);
+  public CAResponseDtoList addCaIdListItem(CAResponseDto caIdListItem) {
+    this.caIdList.add(caIdListItem);
     return this;
   }
 
    /**
-   * Get newsIdList
-   * @return newsIdList
+   * Get caIdList
+   * @return caIdList
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
-  public List<String> getNewsIdList() {
-    return newsIdList;
+  public List<CAResponseDto> getCaIdList() {
+    return caIdList;
   }
 
-  public void setNewsIdList(List<String> newsIdList) {
-    this.newsIdList = newsIdList;
+  public void setCaIdList(List<CAResponseDto> caIdList) {
+    this.caIdList = caIdList;
   }
 
 
@@ -50,21 +51,21 @@ public class NewsResponseDtoList   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewsResponseDtoList newsResponseDtoList = (NewsResponseDtoList) o;
-    return Objects.equals(this.newsIdList, newsResponseDtoList.newsIdList);
+    CAResponseDtoList caResponseDtoList = (CAResponseDtoList) o;
+    return Objects.equals(this.caIdList, caResponseDtoList.caIdList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newsIdList);
+    return Objects.hash(caIdList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NewsResponseDtoList {\n");
+    sb.append("class CAResponseDtoList {\n");
     
-    sb.append("    newsIdList: ").append(toIndentedString(newsIdList)).append("\n");
+    sb.append("    caIdList: ").append(toIndentedString(caIdList)).append("\n");
     sb.append("}");
     return sb.toString();
   }
