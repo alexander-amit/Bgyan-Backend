@@ -24,7 +24,7 @@ public class NewsAnalysisService {
 		try {
 			newsAnalysisRepo.deleteById(newsId.hashCode());
 		} catch (Exception e) {
-			throw new FileStorageException("Sorry! Filename not found" + newsId);
+			throw new FileStorageException("Sorry! Filename not found->" + newsId);
 		}
 		NewsResponseDto newsResponseDto = new NewsResponseDto();
 		newsResponseDto.setId(String.valueOf(newsId.hashCode()));
@@ -41,7 +41,7 @@ public class NewsAnalysisService {
 
 	public NewsAnalysis getNewsAnalysis(String newsId) {
 		return newsAnalysisRepo.findById(newsId.hashCode())
-				.orElseThrow(() -> new MyFileNotFoundException("File not found with id " + newsId.hashCode()));
+				.orElseThrow(() -> new MyFileNotFoundException("File not found with id->" + newsId.hashCode()));
 	}
 
 	public NewsResponseDto saveAnalysis(MultipartFile upfile, String author, String date) {
