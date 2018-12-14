@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * QuestionDtoList
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-14T20:19:56.469+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-14T20:56:45.582+05:30")
 
 public class QuestionDtoList   {
   @JsonProperty("QuestionList")
