@@ -21,6 +21,12 @@ tags:
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
+tags:
+- name: "MustKnowQuestion"
+  description: "Repo of all important question"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
 schemes:
 - "http"
 paths:
@@ -257,6 +263,98 @@ paths:
           description: "Successfully Deleted CA analysis with specified section and ID"
         405:
           description: "Invalid input to delete CA analysis of section."
+  /Questions:
+    post:
+      tags:
+      - "MustKnowQuestion"
+      summary: "Repository of Must Know Question"
+      description: ""
+      operationId: "uploadQuestion"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      requestBody:
+        description: Question Dto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/QuestionDto'
+      responses:
+        201:
+          description: "Question Uploaded"
+          schema:
+            $ref: "#/definitions/QuestionDto"
+        405:
+          description: "Invalid Question format"
+    put:
+      tags:
+      - "MustKnowQuestion"
+      summary: "Repository of Must Know Question"
+      description: ""
+      operationId: "updateQuestion"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      requestBody:
+        description: Question Dto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/QuestionDto'
+      responses:
+        201:
+          description: "Question Uploaded"
+          schema:
+            $ref: "#/definitions/QuestionDto"
+        405:
+          description: "Invalid Question format"
+  /Questions/{section}:
+    get:
+      tags:
+      - "MustKnowQuestion"
+      summary: "Get 10 random question from section"
+      description: ""
+      operationId: "getRandomQuestion"
+      parameters:
+      - name: "section"
+        in: "path"
+        description: "Section of CA"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: "Returned List of All News Id"
+          schema:
+            $ref: "#/definitions/QuestionDtoList"
+        '405':
+          description: "Invalid input"
+  /Questions/{section}/{id}:
+    delete:
+      tags:
+      - "MustKnowQuestion"
+      summary: "Get 10 random question from section"
+      description: ""
+      operationId: "getRandomQuestion"
+      parameters:
+      - name: "section"
+        in: "path"
+        description: "Section of CA"
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "Id of question"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: "Successfully deleted question with Id"
+        '405':
+          description: "Invalid input"
 
 definitions:
   NewsResponseDto:
@@ -308,7 +406,28 @@ definitions:
       CAIdList:
         type: array
         items: 
-          type: string  
+          type: string
+  QuestionDtoList:
+    type: object
+    required:
+      - QuestionList
+    properties:
+      QuestionList:
+        type: array
+        items:
+            $ref: "#/definitions/QuestionDto"
+  QuestionDto:
+    type: object
+    required:
+      - Question
+      - Answer
+    properties:
+      Question:
+        type: string
+      Answer:
+        type: string
+      id:
+        type: string
   
        
 #  ApiResponse:

@@ -3,42 +3,43 @@ package com.nitie.bgyan.generated.dto;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.nitie.bgyan.generated.dto.QuestionDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 /**
- * NewsResponseDtoList
+ * QuestionDtoList
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-14T13:29:59.698+05:30")
 
-public class NewsResponseDtoList   {
-  @JsonProperty("newsIdList")
-  private List<String> newsIdList = new ArrayList<String>();
+public class QuestionDtoList   {
+  @JsonProperty("QuestionList")
+  private List<QuestionDto> questionList = new ArrayList<QuestionDto>();
 
-  public NewsResponseDtoList newsIdList(List<String> newsIdList) {
-    this.newsIdList = newsIdList;
+  public QuestionDtoList questionList(List<QuestionDto> questionList) {
+    this.questionList = questionList;
     return this;
   }
 
-  public NewsResponseDtoList addNewsIdListItem(String newsIdListItem) {
-    this.newsIdList.add(newsIdListItem);
+  public QuestionDtoList addQuestionListItem(QuestionDto questionListItem) {
+    this.questionList.add(questionListItem);
     return this;
   }
 
    /**
-   * Get newsIdList
-   * @return newsIdList
+   * Get questionList
+   * @return questionList
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
-  public List<String> getNewsIdList() {
-    return newsIdList;
+  public List<QuestionDto> getQuestionList() {
+    return questionList;
   }
 
-  public void setNewsIdList(List<String> newsIdList) {
-    this.newsIdList = newsIdList;
+  public void setQuestionList(List<QuestionDto> questionList) {
+    this.questionList = questionList;
   }
 
 
@@ -50,21 +51,21 @@ public class NewsResponseDtoList   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewsResponseDtoList newsResponseDtoList = (NewsResponseDtoList) o;
-    return Objects.equals(this.newsIdList, newsResponseDtoList.newsIdList);
+    QuestionDtoList questionDtoList = (QuestionDtoList) o;
+    return Objects.equals(this.questionList, questionDtoList.questionList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newsIdList);
+    return Objects.hash(questionList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NewsResponseDtoList {\n");
+    sb.append("class QuestionDtoList {\n");
     
-    sb.append("    newsIdList: ").append(toIndentedString(newsIdList)).append("\n");
+    sb.append("    questionList: ").append(toIndentedString(questionList)).append("\n");
     sb.append("}");
     return sb.toString();
   }
