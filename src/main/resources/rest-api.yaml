@@ -274,13 +274,13 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-      requestBody:
-        description: Question Dto
+      parameters:
+      - name: "questionDto"
+        in: "body"
+        description: "Section of CA"
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/QuestionDto'
+        schema:
+          $ref: "#/definitions/QuestionDto"
       responses:
         201:
           description: "Question Uploaded"
@@ -298,13 +298,13 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-      requestBody:
-        description: Question Dto
+      parameters:
+      - name: "questionDto"
+        in: "body"
+        description: "Section of CA"
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/QuestionDto'
+        schema:
+          $ref: "#/definitions/QuestionDto"
       responses:
         201:
           description: "Question Uploaded"
@@ -338,7 +338,7 @@ paths:
       - "MustKnowQuestion"
       summary: "Get 10 random question from section"
       description: ""
-      operationId: "getRandomQuestion"
+      operationId: "deleteQuestionWithId"
       parameters:
       - name: "section"
         in: "path"
@@ -353,6 +353,8 @@ paths:
       responses:
         '200':
           description: "Successfully deleted question with Id"
+          schema:
+            $ref: "#/definitions/QuestionDto"
         '405':
           description: "Invalid input"
 
@@ -421,12 +423,15 @@ definitions:
     required:
       - Question
       - Answer
+      - section
     properties:
       Question:
         type: string
       Answer:
         type: string
       id:
+        type: integer
+      section:
         type: string
   
        

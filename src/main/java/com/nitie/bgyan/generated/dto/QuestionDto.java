@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * QuestionDto
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-14T13:29:59.698+05:30")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-14T20:19:56.469+05:30")
 
 public class QuestionDto   {
   @JsonProperty("Question")
@@ -19,7 +19,10 @@ public class QuestionDto   {
   private String answer = null;
 
   @JsonProperty("id")
-  private String id = null;
+  private Integer id = null;
+
+  @JsonProperty("section")
+  private String section = null;
 
   public QuestionDto question(String question) {
     this.question = question;
@@ -59,7 +62,7 @@ public class QuestionDto   {
     this.answer = answer;
   }
 
-  public QuestionDto id(String id) {
+  public QuestionDto id(Integer id) {
     this.id = id;
     return this;
   }
@@ -69,12 +72,31 @@ public class QuestionDto   {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
+  }
+
+  public QuestionDto section(String section) {
+    this.section = section;
+    return this;
+  }
+
+   /**
+   * Get section
+   * @return section
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+  public String getSection() {
+    return section;
+  }
+
+  public void setSection(String section) {
+    this.section = section;
   }
 
 
@@ -89,12 +111,13 @@ public class QuestionDto   {
     QuestionDto questionDto = (QuestionDto) o;
     return Objects.equals(this.question, questionDto.question) &&
         Objects.equals(this.answer, questionDto.answer) &&
-        Objects.equals(this.id, questionDto.id);
+        Objects.equals(this.id, questionDto.id) &&
+        Objects.equals(this.section, questionDto.section);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(question, answer, id);
+    return Objects.hash(question, answer, id, section);
   }
 
   @Override
@@ -105,6 +128,7 @@ public class QuestionDto   {
     sb.append("    question: ").append(toIndentedString(question)).append("\n");
     sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    section: ").append(toIndentedString(section)).append("\n");
     sb.append("}");
     return sb.toString();
   }
